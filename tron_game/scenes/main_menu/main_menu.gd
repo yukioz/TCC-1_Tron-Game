@@ -14,7 +14,7 @@ extends Control
 @export_category("BOOL")
 
 func _on_BotaoJogar_pressed():
-	get_tree().change_scene_to_file()
+	get_tree().change_scene_to_file("res://scenes/lobby/lobby.tscn")
 
 func _on_BotaoSair_pressed():
 	print("saindo...")

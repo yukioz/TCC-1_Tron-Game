@@ -7,3 +7,9 @@ res://UI/Components/Button/custom_button.tscn
 res://scenes/lobby/lobby.tscn
 res://UI/Components/select_player/select_player.tscn
 res://objects/player/Player.tscn
+res://autoloads/global_data.gd
+res://UI/Components/select_player/select_player.gd
+res://scenes/game/game.tscn
+res://scenes/lobby/lobby.gd
+res://scenes/game/game.gd
+res://objects/player/player.gd

@@ -1,3 +1,64 @@
-[gd_scene format=3 uid="uid://dvn702bexakhg"]
+[gd_scene load_steps=3 format=3 uid="uid://dvn702bexakhg"]
 
-[node name="Lobby" type="Node2D"]
+[ext_resource type="Script" uid="uid://uyo5yyi8ryiv" path="res://scenes/lobby/lobby.gd" id="1_ukx7c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukx7c"]
+bg_color = Color(0.0509804, 0.0509804, 0.101961, 1)
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ukx7c")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ukx7c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -625.0
+offset_right = 625.0
+offset_bottom = 850.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 50
+columns = 3
+
+[node name="PorcoSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="AguiaSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="SerpenteSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="BaleiaSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="LoboSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="DragaoSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+layout_mode = 2
