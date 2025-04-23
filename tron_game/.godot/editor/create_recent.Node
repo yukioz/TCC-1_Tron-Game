@@ -1,0 +1,14 @@
+Panel
+CenterContainer
+Sprite2D
+PanelContainer
+Label
+MarginContainer
+Button
+HBoxContainer
+VBoxContainer
+Control
+Node2D
+TextEdit
+RichTextLabel
+TextureRect

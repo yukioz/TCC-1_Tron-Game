@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://drqjxm73rjg1e"]
+
+[ext_resource type="FontFile" uid="uid://damd3r3c5hwhn" path="res://assets/fonts/Audiowide-Regular.ttf" id="1_p2vhp"]
+[ext_resource type="Texture2D" uid="uid://bafgb6cbqio20" path="res://assets/players_sprites/aguia.svg" id="2_7xjwg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b730u"]
+bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.627451, 0.12549, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xdon"]
+bg_color = Color(0.584314, 0, 0, 1)
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3hwb"]
+bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.627451, 0.12549, 0.941176, 1)
+
+[node name="SelectPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 360.0
+offset_bottom = 360.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b730u")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Header/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_p2vhp")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8xdon")
+text = "x
+"
+
+[node name="Body" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Body"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_p3hwb")
+text = "Animal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/Body"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Body/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/Body/Panel/CenterContainer"]
+texture = ExtResource("2_7xjwg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2

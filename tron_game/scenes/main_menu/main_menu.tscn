@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://df810ub4ih1ik"]
+
+[ext_resource type="Script" uid="uid://phdbvhvk3w7j" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="Texture2D" uid="uid://dis0oy868wet7" path="res://assets/Background.png" id="2_uqeha"]
+[ext_resource type="PackedScene" uid="uid://d13aed2j3afv5" path="res://UI/Components/Button/custom_button.tscn" id="3_ob46e"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsom3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uqeha")
+expand_mode = 3
+
+[node name="Play" parent="TextureRect" instance=ExtResource("3_ob46e")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.5
+offset_top = -92.0
+offset_right = 221.5
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "Jogar"
+
+[node name="Quit" parent="TextureRect" instance=ExtResource("3_ob46e")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0424
+offset_top = -246.0
+offset_right = 85.9576
+offset_bottom = -138.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 68
+text = "Sair"

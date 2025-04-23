@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d13aed2j3afv5"]
+
+[ext_resource type="Script" uid="uid://dkm3g61nqr80" path="res://UI/Components/Button/custom_button.gd" id="1_gow0b"]
+[ext_resource type="FontFile" uid="uid://damd3r3c5hwhn" path="res://assets/fonts/Audiowide-Regular.ttf" id="1_tlig5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gow0b"]
+bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.627451, 0.12549, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlig5"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.239216, 0.0705882, 0.337255, 0.921569)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.627451, 0.12549, 0.941176, 0.529412)
+
+[node name="Button" type="Button"]
+offset_right = 72.0
+offset_bottom = 41.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_tlig5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gow0b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tlig5")
+text = "Texto"
+script = ExtResource("1_gow0b")

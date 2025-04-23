@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8m7f7p8patlv"
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://c8i33sifssrki"
+path="res://.godot/imported/baleia.svg-476330aa03f32bce403e4295b1587e2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://assets/players_sprites/baleia.svg"
+dest_files=["res://.godot/imported/baleia.svg-476330aa03f32bce403e4295b1587e2f.ctex"]
 
 [params]
 

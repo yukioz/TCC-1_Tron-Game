@@ -1,0 +1,9 @@
+res://scenes/main_menu/main_menu.tscn
+res://scenes/main_menu/main_menu.gd
+res://cena_de_estudar_logica.tscn
+res://UI/Components/Button/Button.tscn
+res://UI/Components/Button/button.gd
+res://UI/Components/Button/custom_button.tscn
+res://scenes/lobby/lobby.tscn
+res://UI/Components/select_player/select_player.tscn
+res://objects/player/Player.tscn
