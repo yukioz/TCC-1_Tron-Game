@@ -1,31 +1,40 @@
 extends Control
 
 var animal_data_map := {
-	"Porco": {"name": "Porco", "texture": "res://assets/players_sprites/porco.svg", "keybinds": {"left": KEY_LEFT, "right": KEY_RIGHT}},
-	"Águia": {"name": "Águia", "texture": "res://assets/players_sprites/aguia.svg", "keybinds": {"left": KEY_Q, "right": KEY_W}},
-	"Serpente": {"name": "Serpente", "texture": "res://assets/players_sprites/serpente.svg", "keybinds": {"left": KEY_Z, "right": KEY_X}},
-	"Baleia": {"name": "Baleia", "texture": "res://assets/players_sprites/baleia.svg", "keybinds": {"left": KEY_N, "right": KEY_M}},
-	"Lobo": {"name": "Lobo", "texture": "res://assets/players_sprites/lobo.svg", "keybinds": {"left": KEY_O, "right": KEY_P}},
-	"Dragão": {"name": "Dragão", "texture": "res://assets/players_sprites/dragao.svg", "keybinds": {"left": KEY_G, "right": KEY_H}},
+	"Porco": {"name": "Porco", "texture": "res://assets/players_sprites/porco.svg", "keybinds": {"left": KEY_LEFT, "right": KEY_RIGHT}, "color": Color.PINK},
+	"Águia": {"name": "Águia", "texture": "res://assets/players_sprites/aguia.svg", "keybinds": {"left": KEY_Q, "right": KEY_W}, "color": Color.YELLOW},
+	"Serpente": {"name": "Serpente", "texture": "res://assets/players_sprites/serpente.svg", "keybinds": {"left": KEY_Z, "right": KEY_X}, "color": Color.GREEN},
+	"Baleia": {"name": "Baleia", "texture": "res://assets/players_sprites/baleia.svg", "keybinds": {"left": KEY_N, "right": KEY_M}, "color": Color.BLUE},
+	"Lobo": {"name": "Lobo", "texture": "res://assets/players_sprites/lobo.svg", "keybinds": {"left": KEY_O, "right": KEY_P}, "color": Color.SILVER},
+	"Dragão": {"name": "Dragão", "texture": "res://assets/players_sprites/dragao.svg", "keybinds": {"left": KEY_G, "right": KEY_H}, "color": Color.RED},
 }
+
+var animal_to_play : = []
 
 var slots := {}
 
+@onready var gridContainer: GridContainer = $Panel/MarginContainer/VBoxContainer/GridContainer
+
 func _ready():
+	var vp = get_viewport().get_visible_rect().size
+	gridContainer.size = Vector2((vp.x * 0.8), (vp.y * 0.8))
+	
 	slots = {
-		"Porco": $MarginContainer/GridContainer/PorcoSlot,
-		"Águia": $MarginContainer/GridContainer/AguiaSlot,
-		"Serpente": $MarginContainer/GridContainer/SerpenteSlot,
-		"Baleia": $MarginContainer/GridContainer/BaleiaSlot,
-		"Lobo": $MarginContainer/GridContainer/LoboSlot,
-		"Dragão": $MarginContainer/GridContainer/DragaoSlot,
+		"Porco": $Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/PorcoSlot,
+		"Águia": $Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/AguiaSlot,
+		"Serpente": $Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer/SerpenteSlot,
+		"Baleia": $Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/BaleiaSlot,
+		"Lobo": $Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/LoboSlot,
+		"Dragão": $Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/DragaoSlot,
 	}
 	
 	for name in animal_data_map.keys():
+		print(name)
 		_create_add_button(name)
 
 func _create_add_button(animal_name):
 	var btn = Button.new()
+	btn.custom_minimum_size = Vector2(200, 50)
 	btn.text = "Adicionar " + animal_name
 	btn.pressed.connect(_on_add_animal.bind(animal_name))
 	slots[animal_name].add_child(btn)
@@ -37,7 +46,32 @@ func _on_add_animal(animal_name):
 	var box = preload("res://UI/Components/select_player/select_player.tscn").instantiate()
 	box.animal_data = animal_data_map[animal_name]
 	slot.add_child(box)
+	
+	print(animal_data_map[animal_name])
+	
+	animal_to_play.append(animal_data_map[animal_name])
+	
+	print(animal_to_play)
 
 	box.connect("tree_exited", func():
 		_create_add_button(animal_name)
+		animal_to_play.erase(animal_data_map[animal_name])
 	)
+
+func _on_button_pressed() -> void:
+	var players := []
+
+	for name in slots.keys():
+		var slot = slots[name]
+		if slot.get_child_count() == 0:
+			continue
+		
+		var child = slot.get_child(0)
+		# Confirma que é uma box válida
+		if child.has_method("get_animal_data"):
+			players.append(child.get_animal_data())
+
+	if players.size() >= 2:
+		print("ok")
+	else:
+		print("Pelo menos dois jogadores devem ser adicionados!")

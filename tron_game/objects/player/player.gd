@@ -3,28 +3,48 @@ extends CharacterBody2D
 # Configurações
 @export var color : Color = Color.RED
 @export var speed : float = 200.0
-@export var trail_width : float = 3.0
+var key_left := KEY_LEFT
+var key_left := KEY_RIGHT
+#@export var trail_width : float = 3.0
 
 # Variáveis
 var trail_points := []
 var is_alive := true
 
+var active := false
+signal died(player)
+
 func _ready():
+	# Recebe dados
+	key_left   = animal_data["keybinds"]["left"]
+	key_right  = animal_data["keybinds"]["right"]
+	color      = animal_data["color"]
+	
 	# Configura aparência
-	$Sprite2D.texture = _create_circle_texture(10, color)  # Tamanho do ponto
-	$CollisionShape2D.shape = CircleShape2D.new()
-	$CollisionShape2D.shape.radius = 5  # Metade do tamanho do sprite
+	var trail = $Line2D
+	trail.clear_points()
+	trail.width = 5
+	trail.default_color = color
+	trail.add_to_group("trail")
+	
+	$CollisionShape2D.shape.radius = 5
 
 func _physics_process(delta):
 	if !is_alive: return
 	
-	# Movimentação (você substituirá pelos inputs reais depois)
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * speed
-	move_and_slide()
+	if Input.is_key_pressed(key_left):
+		rotation -= 2*delta
+	elif  Input.is_key_pressed(key_right):
+		rotation += 2*delta
+		
+	velocity = Vector2(speed, 0).rotated(rotation)
+	move_and_collide(velocity*delta)
 	
-	# Adiciona ponto ao rastro
-	_update_trail()
+	$Line2D.add_point(global_position)
+	update()
+	
+func _draw():
+	draw_circle(Vector2.ZERO, 5, color)
 
 func _update_trail():
 	trail_points.append(position)
@@ -39,10 +59,9 @@ func _update_trail():
 	
 	$Trail.points = trail_points
 
-func die():
-	is_alive = false
-	$Sprite2D.modulate.a = 0.3  # Visualização de morte
-	set_physics_process(false)
+func _collide(body):
+	if body.is
+	
 
 # Função auxiliar para criar o sprite redondo
 func _create_circle_texture(size: int, color: Color) -> ImageTexture:

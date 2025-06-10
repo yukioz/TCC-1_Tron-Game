@@ -1,36 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://d13aed2j3afv5"]
+[gd_scene load_steps=3 format=3 uid="uid://cbjcm83kskk10"]
 
-[ext_resource type="Script" uid="uid://dkm3g61nqr80" path="res://UI/Components/Button/custom_button.gd" id="1_gow0b"]
-[ext_resource type="FontFile" uid="uid://damd3r3c5hwhn" path="res://assets/fonts/Audiowide-Regular.ttf" id="1_tlig5"]
+[ext_resource type="Script" uid="uid://cg72vc2rmk6nq" path="res://UI/Components/Button/custom_button.gd" id="1_4m1ct"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gow0b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4m1ct"]
 bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color(0.627451, 0.12549, 0.941176, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlig5"]
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-bg_color = Color(0.239216, 0.0705882, 0.337255, 0.921569)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.627451, 0.12549, 0.941176, 0.529412)
-
 [node name="Button" type="Button"]
-offset_right = 72.0
-offset_bottom = 41.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_tlig5")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gow0b")
-theme_override_styles/normal = SubResource("StyleBoxFlat_tlig5")
-text = "Texto"
-script = ExtResource("1_gow0b")
+anchors_preset = -1
+anchor_left = 0.473524
+anchor_top = 0.47608
+anchor_right = 0.526476
+anchor_bottom = 0.52392
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/hover = SubResource("StyleBoxFlat_4m1ct")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4m1ct")
+text = "texto"
+script = ExtResource("1_4m1ct")
+metadata/_edit_use_anchors_ = true

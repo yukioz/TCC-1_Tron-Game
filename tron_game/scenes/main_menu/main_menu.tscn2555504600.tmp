@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://df810ub4ih1ik"]
+[gd_scene load_steps=4 format=3 uid="uid://df810ub4ih1ik"]
 
 [ext_resource type="Script" uid="uid://phdbvhvk3w7j" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
 [ext_resource type="Texture2D" uid="uid://dis0oy868wet7" path="res://assets/Background.png" id="2_uqeha"]
 [ext_resource type="PackedScene" uid="uid://cbjcm83kskk10" path="res://UI/Components/Button/custom_button.tscn" id="3_ob46e"]
-
-[sub_resource type="GDScript" id="GDScript_ob46e"]
-script/source = "extends VBoxContainer
-"
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -28,25 +24,8 @@ grow_vertical = 2
 texture = ExtResource("2_uqeha")
 expand_mode = 3
 
-[node name="menu_box" type="VBoxContainer" parent="TextureRect"]
+[node name="Play" parent="TextureRect" instance=ExtResource("3_ob46e")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -105.042
-offset_top = -183.0
-offset_right = 104.958
-offset_bottom = 324.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_ob46e")
 
-[node name="Play" parent="TextureRect/menu_box" instance=ExtResource("3_ob46e")]
-layout_mode = 2
-text = "Play"
-
-[node name="Quit" parent="TextureRect/menu_box" instance=ExtResource("3_ob46e")]
-layout_mode = 2
-text = "Sair"
+[node name="Quit" parent="TextureRect" instance=ExtResource("3_ob46e")]
+layout_mode = 1

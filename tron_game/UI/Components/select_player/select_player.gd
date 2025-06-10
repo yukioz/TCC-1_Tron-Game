@@ -8,14 +8,39 @@ signal key_chosen(keycode)
 	"keybinds": {"left": KEY_LEFT, "right": KEY_RIGHT}
 }
 
+@onready var VBox: VBoxContainer = $VBoxContainer
+@onready var Header: PanelContainer = $VBoxContainer/Header
+@onready var Body: PanelContainer = $VBoxContainer/Body
+@onready var Footer: PanelContainer = $VBoxContainer/Footer
+@onready var Body_margin: MarginContainer = $VBoxContainer/Body/VBoxContainer/PanelContainer/MarginContainer
+@onready var Header_margin: MarginContainer = $VBoxContainer/Header/MarginContainer
+@onready var control: Control = $"."
+
 func _ready():
 	# Aplica os dados do animal
-	$VBoxContainer/Body/Body/Label.text = animal_data["name"]
-	$VBoxContainer/Body/Body/PanelContainer/MarginContainer/textureRect.texture = load(animal_data["texture"])
+	$VBoxContainer/Body/VBoxContainer/Label.text = animal_data["name"]
+	$VBoxContainer/Body/VBoxContainer/PanelContainer/MarginContainer/textureRect.texture = load(animal_data["texture"])
 
 	# Configura botões de keybind
 	$VBoxContainer/Footer/MarginContainer/HBoxContainer/key_left.text = OS.get_keycode_string(animal_data["keybinds"]["left"])
 	$VBoxContainer/Footer/MarginContainer/HBoxContainer/key_right.text = OS.get_keycode_string(animal_data["keybinds"]["right"])
+	
+	get_viewport().connect("size_changed", Callable(self, "_update_size"))
+	_update_size()
+	
+func _update_size() -> void:
+	var vp = get_viewport().get_visible_rect().size
+	
+	Body_margin.add_theme_constant_override("margin_top", 10)
+	Body_margin.add_theme_constant_override("margin_bottom", 10)
+	Body_margin.add_theme_constant_override("margin_left", 10)
+	Body_margin.add_theme_constant_override("margin_right", 10)
+	
+	Header_margin.add_theme_constant_override("margin_top", 10)
+	Header_margin.add_theme_constant_override("margin_bottom", 10)
+	Header_margin.add_theme_constant_override("margin_left", 10)
+	Header_margin.add_theme_constant_override("margin_right", 10)
+	
 
 func _on_key_left_pressed():
 	var new_key = await wait_for_key_input()

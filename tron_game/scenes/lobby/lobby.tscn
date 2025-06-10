@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvn702bexakhg"]
+[gd_scene load_steps=4 format=3 uid="uid://dvn702bexakhg"]
 
 [ext_resource type="Script" uid="uid://uyo5yyi8ryiv" path="res://scenes/lobby/lobby.gd" id="1_ukx7c"]
+[ext_resource type="PackedScene" uid="uid://cbjcm83kskk10" path="res://UI/Components/Button/custom_button.tscn" id="2_ukx7c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukx7c"]
 bg_color = Color(0.0509804, 0.0509804, 0.101961, 1)
@@ -23,42 +24,68 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ukx7c")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -625.0
-offset_right = 625.0
-offset_bottom = 850.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/h_separation = 50
-theme_override_constants/v_separation = 50
-columns = 3
+theme_override_constants/separation = 50
 
-[node name="PorcoSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/v_separation = 10
 
-[node name="AguiaSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
 
-[node name="SerpenteSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+[node name="PorcoSlot" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="BaleiaSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+[node name="AguiaSlot" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="LoboSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+[node name="SerpenteSlot" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="DragaoSlot" type="VBoxContainer" parent="MarginContainer/GridContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BaleiaSlot" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LoboSlot" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DragaoSlot" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_ukx7c")]
+layout_mode = 2
+text = "Play"

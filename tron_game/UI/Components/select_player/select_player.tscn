@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drqjxm73rjg1e"]
+[gd_scene load_steps=10 format=3 uid="uid://drqjxm73rjg1e"]
 
 [ext_resource type="Script" uid="uid://smpxrjbxbw48" path="res://UI/Components/select_player/select_player.gd" id="1_7xjwg"]
 [ext_resource type="FontFile" uid="uid://damd3r3c5hwhn" path="res://assets/fonts/Audiowide-Regular.ttf" id="1_p2vhp"]
@@ -10,6 +10,9 @@ border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_color = Color(0.627451, 0.12549, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xjwg"]
+bg_color = Color(0.901721, 0.168934, 0.293878, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xdon"]
 bg_color = Color(0.584314, 0, 0, 1)
@@ -32,17 +35,24 @@ border_width_bottom = 5
 border_color = Color(0.627451, 0.12549, 0.941176, 1)
 
 [node name="SelectPlayer" type="Control"]
-custom_minimum_size = Vector2(350, 350)
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 350.0
-offset_bottom = 350.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_7xjwg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(350, 350)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,68 +62,60 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="Header" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_b730u")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Header"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="Button" type="Button" parent="VBoxContainer/Header/MarginContainer"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_p2vhp")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_7xjwg")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8xdon")
 text = "x
 "
 
 [node name="Body" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_p3hwb")
 
-[node name="Body" type="VBoxContainer" parent="VBoxContainer/Body"]
-custom_minimum_size = Vector2(0, 200)
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="VBoxContainer/Body/Body"]
+[node name="Label" type="Label" parent="VBoxContainer/Body/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 20
 text = "Animal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Body/Body"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Body/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_05o4p")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/Body/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="textureRect" type="TextureRect" parent="VBoxContainer/Body/Body/PanelContainer/MarginContainer"]
+[node name="textureRect" type="TextureRect" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_7xjwg")
 
 [node name="Footer" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_thw2y")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Footer"]
