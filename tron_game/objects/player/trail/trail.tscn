@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://x60tle7p3wxn"]
+
+[node name="Trail" type="Line2D"]
+points = PackedVector2Array(165, 75, 231, 75)
+width = 5.0
+default_color = Color(0.717647, 0, 0.188235, 1)

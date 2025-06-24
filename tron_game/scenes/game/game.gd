@@ -1,51 +1,86 @@
-extends CharacterBody2D
+class_name GameScene extends Node2D
 
-# Configurações
-@export var color : Color = Color.RED
-@export var speed : float = 200.0
-@export var trail_width : float = 3.0
+# Lista de jogadores com nome, cor e controles
 
-# Variáveis
-var trail_points := []
-var is_alive := true
+# Armazena os pontos por jogador
+var score = {}
 
-func _ready():
-	# Configura aparência
-	$Sprite2D.texture = _create_circle_texture(10, color)  # Tamanho do ponto
-	$CollisionShape2D.shape = CircleShape2D.new()
-	$CollisionShape2D.shape.radius = 5  # Metade do tamanho do sprite
+# Referência pros jogadores instanciados
+var player_nodes = []
 
-func _physics_process(delta):
-	if !is_alive: return
+# Controle do round
+var alive_players = []
+
+@export var player_scene: PackedScene
+
+@onready var map_area = $Maplayer/MapArea
+@onready var area_top_left = $Maplayer/UpperLeft
+@onready var area_lower_right = $Maplayer/LowerRight
+
+var x_max:float
+var x_min:float
+var y_max:float
+var y_min:float
+
+func _ready() -> void:
+	x_max = area_lower_right.position.x
+	x_min = area_top_left.position.x
+	y_max = area_lower_right.position.y
+	y_min = area_top_left.position.y
 	
-	# Movimentação (você substituirá pelos inputs reais depois)
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * speed
-	move_and_slide()
+	# Area do Mapa
+	print("leopa")
 	
-	# Adiciona ponto ao rastro
-	_update_trail()
-
-func _update_trail():
-	trail_points.append(position)
+	start_round()
 	
-	# Cria/atualiza o Line2D do rastro
-	if !has_node("Trail"):
-		var trail = Line2D.new()
-		trail.width = trail_width
-		trail.default_color = color
-		trail.name = "Trail"
-		add_child(trail)
+func wrap_vector(v:Vector2) -> Vector2:
 	
-	$Trail.points = trail_points
-
-func die():
-	is_alive = false
-	$Sprite2D.modulate.a = 0.3  # Visualização de morte
-	set_physics_process(false)
-
-# Função auxiliar para criar o sprite redondo
-func _create_circle_texture(size: int, color: Color) -> ImageTexture:
-	var image = Image.create(size, size, false, Image.FORMAT_RGBA8)
-	image.fill(color)
-	return ImageTexture.create_from_image(image)
+	if v.x > x_max:
+		return Vector2(x_min, v.y)
+	elif v.x < x_min:
+		return Vector2(x_max, v.y)
+	elif v.y > y_max:
+		return Vector2(v.y, y_min)
+	elif v.y < y_min:
+		return Vector2(v.x, y_max)
+		
+	return v
+	
+func get_random_position_in_map() -> Vector2:
+	
+	return Vector2(
+		randf_range(x_min+50, x_max-50),
+		randf_range(y_min+50, y_max-50)
+	)
+	
+func clear_map():
+	for player in player_nodes:
+		player.queue_free()
+		
+	player_nodes.clear()
+	
+func start_round():
+	clear_map()
+	alive_players.clear()
+	
+	print(GameState.selected_players)
+	
+	for data in GameState.selected_players:
+		var player = player_scene.instantiate()
+		player.position = get_random_position_in_map()
+		player.animal_data = data
+		player_nodes.append(player)
+		alive_players.append(player)
+		player.connect("died", Callable(self, "_on_player_died"))
+		map_area.add_child(player)
+		print("adicionei")
+		
+func _on_player_died(player):
+	alive_players.erase(player)
+	
+	if alive_players.size() == 1:
+		end_round()
+		
+func end_round():
+	print("Fim do round!")
+	

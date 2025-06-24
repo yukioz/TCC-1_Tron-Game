@@ -1,15 +1,78 @@
-[gd_scene load_steps=2 format=3 uid="uid://tfvwy384t7js"]
+[gd_scene load_steps=5 format=3 uid="uid://tfvwy384t7js"]
 
 [ext_resource type="Script" uid="uid://dsudy8mqg0tqv" path="res://scenes/game/game.gd" id="1_sul5r"]
+[ext_resource type="PackedScene" uid="uid://befpxqy2n1kmb" path="res://objects/player/Player.tscn" id="2_7h61r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sul5r"]
+size = Vector2(900, 610)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h61r"]
+bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.627451, 0.12549, 0.941176, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_sul5r")
+player_scene = ExtResource("2_7h61r")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Maplayer" type="Node2D" parent="."]
+
+[node name="MapArea" type="Area2D" parent="Maplayer"]
+position = Vector2(232, 20)
+
+[node name="Area2D" type="CollisionShape2D" parent="Maplayer/MapArea"]
+position = Vector2(450, 305)
+shape = SubResource("RectangleShape2D_sul5r")
+
+[node name="Mapa" type="ColorRect" parent="Maplayer/MapArea"]
+offset_right = 900.0
+offset_bottom = 610.0
+color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="UpperLeft" type="Marker2D" parent="Maplayer"]
+position = Vector2(232, 20)
+
+[node name="LowerRight" type="Marker2D" parent="Maplayer"]
+position = Vector2(1132, 630)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScorePanel" type="Panel" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(200, 600)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7h61r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/ScorePanel"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
+[node name="background" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Background" type="ColorRect" parent="background"]
+custom_minimum_size = Vector2(139, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0509804, 0.0509804, 0.101961, 1)

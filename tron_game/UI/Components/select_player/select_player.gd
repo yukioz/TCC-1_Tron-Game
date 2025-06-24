@@ -29,7 +29,7 @@ func _ready():
 	_update_size()
 	
 func _update_size() -> void:
-	var vp = get_viewport().get_visible_rect().size
+	var _vp = get_viewport().get_visible_rect().size
 	
 	Body_margin.add_theme_constant_override("margin_top", 10)
 	Body_margin.add_theme_constant_override("margin_bottom", 10)

@@ -1,10 +1,11 @@
-res://scenes/main_menu/main_menu.tscn
+res://scenes/game/game.tscn
 res://scenes/lobby/lobby.gd
-res://UI/Components/Button/custom_button.tscn
-res://scenes/main_menu/main_menu.gd
-res://UI/Components/Button/custom_button.gd
+res://scenes/game/game.gd
 res://scenes/lobby/lobby.tscn
-res://UI/Components/select_player/select_player.gd
+res://scenes/main_menu/main_menu.tscn
+res://UI/Components/Button/custom_button.tscn
 res://UI/Components/select_player/select_player.tscn
 res://objects/player/Player.tscn
+res://objects/player/trail/trail.tscn
 res://objects/player/player.gd
+res://UI/Components/select_player/select_player.gd

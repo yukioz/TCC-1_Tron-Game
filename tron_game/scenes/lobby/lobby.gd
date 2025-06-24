@@ -29,15 +29,14 @@ func _ready():
 	}
 	
 	for name in animal_data_map.keys():
-		print(name)
-		_create_add_button(name)
+		call_deferred_thread_group("_create_add_button", name) #  _create_add_button(name)
 
 func _create_add_button(animal_name):
 	var btn = Button.new()
 	btn.custom_minimum_size = Vector2(200, 50)
 	btn.text = "Adicionar " + animal_name
 	btn.pressed.connect(_on_add_animal.bind(animal_name))
-	slots[animal_name].add_child(btn)
+	slots[animal_name].call_deferred("add_child", btn)
 
 func _on_add_animal(animal_name):
 	var slot = slots[animal_name]
@@ -45,7 +44,7 @@ func _on_add_animal(animal_name):
 
 	var box = preload("res://UI/Components/select_player/select_player.tscn").instantiate()
 	box.animal_data = animal_data_map[animal_name]
-	slot.add_child(box)
+	slot.call_deferred("add_child", box) 
 	
 	print(animal_data_map[animal_name])
 	
@@ -59,19 +58,15 @@ func _on_add_animal(animal_name):
 	)
 
 func _on_button_pressed() -> void:
-	var players := []
-
-	for name in slots.keys():
-		var slot = slots[name]
-		if slot.get_child_count() == 0:
-			continue
-		
-		var child = slot.get_child(0)
-		# Confirma que é uma box válida
-		if child.has_method("get_animal_data"):
-			players.append(child.get_animal_data())
-
-	if players.size() >= 2:
+	
+	print(animal_to_play)
+	
+	if animal_to_play.size() >= 2:
 		print("ok")
 	else:
 		print("Pelo menos dois jogadores devem ser adicionados!")
+		return
+	
+	# Guarda info do jogadores em singleton
+	GameState.selected_players = animal_to_play.duplicate(true)
+	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
