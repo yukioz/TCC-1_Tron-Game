@@ -1,10 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://tfvwy384t7js"]
+[gd_scene load_steps=9 format=3 uid="uid://tfvwy384t7js"]
 
 [ext_resource type="Script" uid="uid://dsudy8mqg0tqv" path="res://scenes/game/game.gd" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://befpxqy2n1kmb" path="res://objects/player/Player.tscn" id="2_7h61r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sul5r"]
 size = Vector2(900, 610)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7h61r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sr1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kelw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfrn8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h61r"]
 bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
@@ -24,13 +32,44 @@ player_scene = ExtResource("2_7h61r")
 position = Vector2(232, 20)
 
 [node name="Area2D" type="CollisionShape2D" parent="Maplayer/MapArea"]
+visible = false
 position = Vector2(450, 305)
 shape = SubResource("RectangleShape2D_sul5r")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
-[node name="Mapa" type="ColorRect" parent="Maplayer/MapArea"]
-offset_right = 900.0
-offset_bottom = 610.0
-color = Color(0.109804, 0.109804, 0.109804, 1)
+[node name="Walls" type="Node2D" parent="Maplayer/MapArea"]
+
+[node name="TopWall" type="Area2D" parent="Maplayer/MapArea/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maplayer/MapArea/Walls/TopWall"]
+shape = SubResource("RectangleShape2D_7h61r")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="Maplayer/MapArea/Walls/TopWall"]
+
+[node name="BottomWall" type="Area2D" parent="Maplayer/MapArea/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maplayer/MapArea/Walls/BottomWall"]
+shape = SubResource("RectangleShape2D_0sr1o")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="Maplayer/MapArea/Walls/BottomWall"]
+
+[node name="RightWall" type="Area2D" parent="Maplayer/MapArea/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maplayer/MapArea/Walls/RightWall"]
+shape = SubResource("RectangleShape2D_kelw5")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="Maplayer/MapArea/Walls/RightWall"]
+
+[node name="LeftWall" type="Area2D" parent="Maplayer/MapArea/Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maplayer/MapArea/Walls/LeftWall"]
+shape = SubResource("RectangleShape2D_lfrn8")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="Polygon2D" type="Polygon2D" parent="Maplayer/MapArea/Walls/LeftWall"]
 
 [node name="UpperLeft" type="Marker2D" parent="Maplayer"]
 position = Vector2(232, 20)

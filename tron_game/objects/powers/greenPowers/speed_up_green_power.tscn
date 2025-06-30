@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dx422eq67ign4"]
+
+[ext_resource type="Texture2D" uid="uid://csqa5tiw75bbl" path="res://assets/power_assets/green_speed_up.png" id="1_18fnx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hx26"]
+radius = 25.0
+
+[node name="Power_tscn" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3hx26")
+debug_color = Color(0.123851, 0.282007, 1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_18fnx")

@@ -18,6 +18,12 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 
 GameState="*res://autoloads/gameState.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+shapes/collision/shape_color=Color(0.25098, 0.435294, 0.521569, 1)
+shapes/collision/contact_color=Color(0.878727, 0.0476345, 0.457626, 1)
+
 [gui]
 
 theme/custom_font="uid://damd3r3c5hwhn"
