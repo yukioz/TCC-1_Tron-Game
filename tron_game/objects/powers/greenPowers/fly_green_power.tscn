@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1i1e7mabf74r"]
+[gd_scene load_steps=4 format=3 uid="uid://d1i1e7mabf74r"]
 
+[ext_resource type="Script" uid="uid://dx4bk2wevnw8t" path="res://objects/powers/greenPowers/fly_green_power.gd" id="1_dsksg"]
 [ext_resource type="Texture2D" uid="uid://b23fwk7c32pui" path="res://assets/power_assets/fly_green.png" id="1_gqc6l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hx26"]
 radius = 25.0
 
 [node name="Power_tscn" type="Area2D"]
+script = ExtResource("1_dsksg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3hx26")

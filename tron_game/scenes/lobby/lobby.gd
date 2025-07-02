@@ -28,8 +28,8 @@ func _ready():
 		"Dragão": $Panel/MarginContainer/VBoxContainer/GridContainer/HBoxContainer2/DragaoSlot,
 	}
 	
-	for name in animal_data_map.keys():
-		call_deferred_thread_group("_create_add_button", name) #  _create_add_button(name)
+	for animal_name in animal_data_map.keys():
+		call_deferred_thread_group("_create_add_button", animal_name) #  _create_add_button(name)
 
 func _create_add_button(animal_name):
 	var btn = Button.new()

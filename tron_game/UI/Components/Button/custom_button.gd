@@ -21,8 +21,9 @@ func _update_size() -> void:
 	var h = max(w * 0.5, min_height)
 	var new_size = Vector2(w, h)
 	custom_minimum_size = new_size
-	size = new_size
-	position = (vp - new_size) * 0.5
+	set_deferred("custom_minimum_size", new_size)
+	set_deferred("size", new_size)
+	set_deferred("position", (vp - new_size) * 0.5)
 
 func _on_pressed() -> void:
 	print("clicou!")

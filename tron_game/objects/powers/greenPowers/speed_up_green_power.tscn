@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx422eq67ign4"]
+[gd_scene load_steps=5 format=3 uid="uid://dx422eq67ign4"]
 
 [ext_resource type="Texture2D" uid="uid://csqa5tiw75bbl" path="res://assets/power_assets/green_speed_up.png" id="1_18fnx"]
+[ext_resource type="Script" uid="uid://bc2cktxqrp2rm" path="res://objects/powers/greenPowers/speed_up_green_power.gd" id="1_k8e31"]
+[ext_resource type="Script" path="res://objects/powers/greenPowers/sprite_2d.gd" id="2_2h5sc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hx26"]
 radius = 25.0
 
 [node name="Power_tscn" type="Area2D"]
+script = ExtResource("1_k8e31")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3hx26")
@@ -13,3 +16,4 @@ debug_color = Color(0.123851, 0.282007, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_18fnx")
+script = ExtResource("2_2h5sc")

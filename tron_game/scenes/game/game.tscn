@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://dsudy8mqg0tqv" path="res://scenes/game/game.gd" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://befpxqy2n1kmb" path="res://objects/player/Player.tscn" id="2_7h61r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sul5r"]
-size = Vector2(900, 610)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7h61r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0sr1o"]
@@ -13,6 +10,9 @@ size = Vector2(900, 610)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kelw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfrn8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7h61r"]
+font_size = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h61r"]
 bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
@@ -28,14 +28,8 @@ player_scene = ExtResource("2_7h61r")
 
 [node name="Maplayer" type="Node2D" parent="."]
 
-[node name="MapArea" type="Area2D" parent="Maplayer"]
+[node name="MapArea" type="Node2D" parent="Maplayer"]
 position = Vector2(232, 20)
-
-[node name="Area2D" type="CollisionShape2D" parent="Maplayer/MapArea"]
-visible = false
-position = Vector2(450, 305)
-shape = SubResource("RectangleShape2D_sul5r")
-debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Walls" type="Node2D" parent="Maplayer/MapArea"]
 
@@ -76,6 +70,25 @@ position = Vector2(232, 20)
 
 [node name="LowerRight" type="Marker2D" parent="Maplayer"]
 position = Vector2(1132, 630)
+
+[node name="Label" type="Label" parent="Maplayer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 607.0
+offset_top = 280.0
+offset_right = 704.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "GO!"
+label_settings = SubResource("LabelSettings_7h61r")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

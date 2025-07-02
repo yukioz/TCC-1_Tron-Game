@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhmpdpa0xuef"]
+[gd_scene load_steps=4 format=3 uid="uid://dhmpdpa0xuef"]
 
+[ext_resource type="Script" uid="uid://ra52tfcq21e" path="res://objects/powers/bluePowers/open_borders_power.gd" id="1_4416v"]
 [ext_resource type="Texture2D" uid="uid://c5g6lai82j5bn" path="res://assets/power_assets/border_pass.png" id="1_vr7ii"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hx26"]
 radius = 25.0
 
 [node name="Power_tscn" type="Area2D"]
+script = ExtResource("1_4416v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3hx26")

@@ -12,3 +12,7 @@ script = ExtResource("1_o6ghu")
 shape = SubResource("CircleShape2D_o6ghu")
 one_way_collision_margin = 0.0
 debug_color = Color(0.717647, 0, 0.188235, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]

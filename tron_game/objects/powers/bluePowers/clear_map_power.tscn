@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8cv4cj1b4iek"]
+[gd_scene load_steps=4 format=3 uid="uid://b8cv4cj1b4iek"]
 
 [ext_resource type="Texture2D" uid="uid://cyiopohf8rjos" path="res://assets/power_assets/clear_map.png" id="1_nugxb"]
+[ext_resource type="Script" uid="uid://2rcalkom2rcc" path="res://objects/powers/bluePowers/clear_map_power.gd" id="1_tj2gj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hx26"]
 radius = 25.0
 
 [node name="Power_tscn" type="Area2D"]
+script = ExtResource("1_tj2gj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3hx26")

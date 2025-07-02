@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://6vak1ihe6vjh"]
+[gd_scene load_steps=4 format=3 uid="uid://6vak1ihe6vjh"]
 
+[ext_resource type="Script" uid="uid://bwk1ffti13hf3" path="res://objects/powers/redPowers/grow_red_power.gd" id="1_jwx6r"]
 [ext_resource type="Texture2D" uid="uid://b0rgnsqp364fj" path="res://assets/power_assets/grow_red_power.png" id="1_uyv5d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hx26"]
 radius = 25.0
 
 [node name="Power_tscn" type="Area2D"]
+script = ExtResource("1_jwx6r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3hx26")

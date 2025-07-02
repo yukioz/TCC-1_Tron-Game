@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cly7klh3rni8n"]
+[gd_scene load_steps=4 format=3 uid="uid://cly7klh3rni8n"]
 
 [ext_resource type="Texture2D" uid="uid://mu76dcnpgx01" path="res://assets/power_assets/red_slow_down.png" id="1_8m1a4"]
+[ext_resource type="Script" uid="uid://dauweteh3eg0o" path="res://objects/powers/redPowers/slow_down_red_power.gd" id="1_47obq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3hx26"]
 radius = 25.0
 
 [node name="Power_tscn" type="Area2D"]
+script = ExtResource("1_47obq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3hx26")
