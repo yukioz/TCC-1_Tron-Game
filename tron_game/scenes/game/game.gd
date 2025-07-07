@@ -34,7 +34,10 @@ var next_power_time := randf_range(5.0, 10.0)
 var borders_open = false
 
 @onready var round_countdown = $Maplayer/Label
-@onready var score_vbox : VBoxContainer = $CanvasLayer/MarginContainer/ScorePanel/VBoxContainer
+@onready var score_vbox : VBoxContainer = $CanvasLayer/MarginContainer/VBoxContainer/ScorePanel/VBoxContainer
+@onready var pause_menu : = $PauseMenu/CenterContainer
+@onready var winning_player_label : Label = $WinningPanel/CenterContainer/PanelContainer/VBoxContainer/Label
+@onready var winner_menu : = $WinningPanel/CenterContainer
 
 @export var player_scene: PackedScene
 
@@ -240,8 +243,6 @@ func _on_player_died(player):
 	
 	alive_players.erase(player)
 	player_nodes.erase(player)
-
-	player.call_deferred("queue_free")
 	
 	if alive_players.size() == 1 and not is_round_ending:
 		is_round_ending = true
@@ -261,18 +262,16 @@ func _on_player_died(player):
 func end_round():
 	
 	clear_map()
-	print("Fim do round!")
 	
-	for i in players_rank.size():
+	for i in range(players_rank.size()):
 		var animal_name = players_rank[i]
 		if not GameState.scores.has(animal_name):
 			GameState.scores[animal_name] = 0
 		GameState.scores[animal_name] += i
-		print(animal_name, " agora tem ", GameState.scores[animal_name], " pontos")
 		
 		update_score_ui()
 		
-		if GameState.scores[animal_name] >= 20:
+		if GameState.scores[animal_name] >= 1:
 			game_end(animal_name)
 			return
 	
@@ -280,7 +279,11 @@ func end_round():
 	start_round()
 	
 func game_end(winner_name: String):
-	print("🏆 Jogo encerrado! Vencedor: ", winner_name)
+	winning_player_label.text = winner_name + " ganhou! 👑"
+	
+	get_tree().paused = true
+	winner_menu.visible = true
+	
 	
 func spawn_random_power():
 	var keys = powers.keys()
@@ -311,3 +314,28 @@ func _physics_process(delta: float) -> void:
 		spawn_random_power()
 		time_passed = 0.0
 		next_power_time = randf_range(5.0, 10.0)
+
+
+func _on_pause_pressed() -> void:
+	# ativa o pause e mostra o menu
+	get_tree().paused = true
+	pause_menu.visible = true
+
+
+func _on_continue_pressed() -> void:
+	pause_menu.visible = false
+	get_tree().paused = false
+
+
+func _on_go_to_menu_pressed() -> void:
+	# retorna ao menu principal
+	get_tree().paused = false
+	GameState.scores.clear()
+	players_rank.clear()
+	is_round_ending = false
+	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")
+
+
+func _on_return_to_lobby_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/lobby/lobby.tscn")

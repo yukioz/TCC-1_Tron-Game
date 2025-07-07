@@ -46,11 +46,7 @@ func _on_add_animal(animal_name):
 	box.animal_data = animal_data_map[animal_name]
 	slot.call_deferred("add_child", box) 
 	
-	print(animal_data_map[animal_name])
-	
 	animal_to_play.append(animal_data_map[animal_name])
-	
-	print(animal_to_play)
 
 	box.connect("tree_exited", func():
 		_create_add_button(animal_name)
@@ -58,8 +54,6 @@ func _on_add_animal(animal_name):
 	)
 
 func _on_button_pressed() -> void:
-	
-	print(animal_to_play)
 	
 	if animal_to_play.size() >= 2:
 		print("ok")
@@ -70,3 +64,7 @@ func _on_button_pressed() -> void:
 	# Guarda info do jogadores em singleton
 	GameState.selected_players = animal_to_play.duplicate(true)
 	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
+
+
+func _on_voltar_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu/main_menu.tscn")

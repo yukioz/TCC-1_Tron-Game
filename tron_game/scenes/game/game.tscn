@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://tfvwy384t7js"]
+[gd_scene load_steps=10 format=3 uid="uid://tfvwy384t7js"]
 
 [ext_resource type="Script" uid="uid://dsudy8mqg0tqv" path="res://scenes/game/game.gd" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://befpxqy2n1kmb" path="res://objects/player/Player.tscn" id="2_7h61r"]
@@ -15,6 +15,14 @@
 font_size = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h61r"]
+bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.627451, 0.12549, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sr1o"]
 bg_color = Color(0.239216, 0.0705882, 0.337255, 1)
 border_width_left = 5
 border_width_top = 5
@@ -104,16 +112,37 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="ScorePanel" type="Panel" parent="CanvasLayer/MarginContainer"]
-custom_minimum_size = Vector2(200, 600)
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="ScorePanel" type="Panel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 500)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7h61r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/ScorePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/ScorePanel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="MenuPanel" type="Panel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7h61r")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/MenuPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/MenuPanel/CenterContainer"]
+layout_mode = 2
+text = "pause"
 
 [node name="background" type="CanvasLayer" parent="."]
 layer = -1
@@ -128,3 +157,85 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.0509804, 0.0509804, 0.101961, 1)
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu/CenterContainer"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_0sr1o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/CenterContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pausado"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Continue" type="Button" parent="PauseMenu/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Continuar"
+
+[node name="GoToMenu" type="Button" parent="PauseMenu/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Voltar ao menu"
+
+[node name="WinningPanel" type="CanvasLayer" parent="."]
+process_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="WinningPanel"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="WinningPanel/CenterContainer"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_0sr1o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinningPanel/CenterContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="WinningPanel/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pausado"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WinningPanel/CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ReturnToLobbyButton" type="Button" parent="WinningPanel/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Continuar"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/MenuPanel/CenterContainer/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/GoToMenu" to="." method="_on_go_to_menu_pressed"]
+[connection signal="pressed" from="WinningPanel/CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/ReturnToLobbyButton" to="." method="_on_return_to_lobby_button_pressed"]

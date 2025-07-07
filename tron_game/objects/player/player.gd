@@ -38,6 +38,7 @@ const TRAIL_START_DELAY := 1
 # player
 @onready var player = $"."
 @onready var player_colission : CollisionShape2D = $CollisionShape2D
+@onready var SFX_Die : AudioStreamPlayer = $SFX_Die
 var can_move = false
 var turn_speed : float = 2
 var movement = "curve"
@@ -149,12 +150,12 @@ func _on_area_entered(area):
 	if not flying:
 		if area.is_in_group("trail") or  area.is_in_group("wall"):
 			alive = false
+			SFX_Die.play()
 			emit_signal("died", self)
+			await SFX_Die.finished
 			queue_free()
 
 func apply_power(power_name):
-	print(power_name)
-	
 	match power_name:
 		"fly_green_power":
 			fly_green()

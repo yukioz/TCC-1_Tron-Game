@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://befpxqy2n1kmb"]
+[gd_scene load_steps=4 format=3 uid="uid://befpxqy2n1kmb"]
 
 [ext_resource type="Script" uid="uid://bxc3ki1y8cfvm" path="res://objects/player/player.gd" id="1_o6ghu"]
+[ext_resource type="AudioStream" uid="uid://dxu2kathhex6y" path="res://assets/audio/puff_sound.ogg" id="2_sllil"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6ghu"]
 radius = 2.5
@@ -16,3 +17,7 @@ debug_color = Color(0.717647, 0, 0.188235, 1)
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+
+[node name="SFX_Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sllil")
+volume_db = 10.0

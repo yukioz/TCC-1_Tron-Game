@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://1m1y58mdr0fx"]
-
-[ext_resource type="Script" uid="uid://kw0xq5mwue6f" path="res://cena_de_estudar_logica.gd" id="1_fn8pq"]
-
-[node name="CenaDeEstudarLogica" type="Node"]
-script = ExtResource("1_fn8pq")
-saudacao = "olá mundo333!"

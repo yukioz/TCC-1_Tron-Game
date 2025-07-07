@@ -16,7 +16,6 @@ func _ready() -> void:
 
 func _update_size() -> void:
 	var vp = get_viewport().get_visible_rect().size
-	print(width_pct)
 	var w = max(vp.x * width_pct, min_width)
 	var h = max(w * 0.5, min_height)
 	var new_size = Vector2(w, h)

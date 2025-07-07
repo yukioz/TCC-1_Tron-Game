@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck3ch2wanrtph"]
+
+[ext_resource type="AudioStream" uid="uid://b2ul0qsatoi07" path="res://assets/audio/tron_music.ogg" id="1_kb8br"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_kb8br")
+autoplay = true
+parameters/looping = true
