@@ -31,6 +31,7 @@ border_width_bottom = 5
 border_color = Color(0.627451, 0.12549, 0.941176, 1)
 
 [node name="Game" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_sul5r")
 player_scene = ExtResource("2_7h61r")
 
@@ -121,10 +122,16 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7h61r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/ScorePanel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/ScorePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/ScorePanel/CenterContainer"]
+layout_mode = 2
 
 [node name="MenuPanel" type="Panel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 100)

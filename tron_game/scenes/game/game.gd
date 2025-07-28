@@ -20,7 +20,7 @@ var powers = {
 	"green_speed_up": "res://objects/powers/greenPowers/speed_up_green_power.tscn",
 	"green_slow_down": "res://objects/powers/greenPowers/slow_down_green_power.tscn",
 	"green_fly": "res://objects/powers/greenPowers/fly_green_power.tscn",
-	#"green_shrink": "res://objects/powers/greenPowers/shrink_green_power.tscn", # Bug
+	"green_shrink": "res://objects/powers/greenPowers/shrink_green_power.tscn", # fix?
 	"green_move_90": "res://objects/powers/greenPowers/move_90_green_power.tscn",
 	"red_confuse": "res://objects/powers/redPowers/confuse_red_power.tscn",
 	#"red_grow_up": "res://objects/powers/redPowers/grow_red_power.tscn", #Bug
@@ -34,7 +34,7 @@ var next_power_time := randf_range(5.0, 10.0)
 var borders_open = false
 
 @onready var round_countdown = $Maplayer/Label
-@onready var score_vbox : VBoxContainer = $CanvasLayer/MarginContainer/VBoxContainer/ScorePanel/VBoxContainer
+@onready var score_vbox : VBoxContainer = $CanvasLayer/MarginContainer/VBoxContainer/ScorePanel/CenterContainer/VBoxContainer
 @onready var pause_menu : = $PauseMenu/CenterContainer
 @onready var winning_player_label : Label = $WinningPanel/CenterContainer/PanelContainer/VBoxContainer/Label
 @onready var winner_menu : = $WinningPanel/CenterContainer
@@ -175,7 +175,7 @@ func wrap_vector(v:Vector2) -> Vector2:
 	elif v.x < x_min:
 		return Vector2(x_max, v.y)
 	elif v.y > y_max:
-		return Vector2(v.y, y_min)
+		return Vector2(v.x, y_min)
 	elif v.y < y_min:
 		return Vector2(v.x, y_max)
 		
@@ -271,7 +271,7 @@ func end_round():
 		
 		update_score_ui()
 		
-		if GameState.scores[animal_name] >= 1:
+		if GameState.scores[animal_name] >= (players_rank.size() * 5):
 			game_end(animal_name)
 			return
 	
@@ -280,6 +280,8 @@ func end_round():
 	
 func game_end(winner_name: String):
 	winning_player_label.text = winner_name + " ganhou! 👑"
+	GameState.scores.clear()
+	
 	
 	get_tree().paused = true
 	winner_menu.visible = true
@@ -321,11 +323,9 @@ func _on_pause_pressed() -> void:
 	get_tree().paused = true
 	pause_menu.visible = true
 
-
 func _on_continue_pressed() -> void:
 	pause_menu.visible = false
 	get_tree().paused = false
-
 
 func _on_go_to_menu_pressed() -> void:
 	# retorna ao menu principal

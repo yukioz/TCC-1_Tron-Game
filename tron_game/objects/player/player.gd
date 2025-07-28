@@ -56,6 +56,7 @@ func _ready():
 	# parâmetros vindos de animal_data
 	key_left = animal_data["keybinds"]["left"]
 	key_right = animal_data["keybinds"]["right"]
+	self.name = animal_data["name"]
 	
 	$Node2D/Polygon2D.polygon = PackedVector2Array([
 		Vector2(0, -10),   # ponta de cima
@@ -149,6 +150,7 @@ func _on_area_entered(area):
 	
 	if not flying:
 		if area.is_in_group("trail") or  area.is_in_group("wall"):
+			print("Colidiu com: ", area.name)
 			alive = false
 			SFX_Die.play()
 			emit_signal("died", self)
@@ -246,32 +248,30 @@ func set_player_radius(r: float, center_offset: Vector2):
 	$CollisionShape2D.shape.radius = r
 	queue_redraw()
 	
-func grow_up_red():
-	var forward = Vector2.RIGHT.rotated(rotation).normalized()
-	var old_player_radius = player_radius
+func grow_up_red(): # NOT WORKING
 	player_radius = player_radius * 2
-	var off = forward * (player_radius - old_player_radius)
-	set_player_radius(player_radius, off)
+	set_player_radius(player_radius, Vector2.ZERO)
 	TRAIL_INTERVAL *= 2
 
 	await get_tree().create_timer(7.0).timeout
 
 	# 2) volta ao normal (sem offset)
-	set_player_radius(player_radius, Vector2.ZERO)
+	player_colission.shape.radius *= 0.5
+	player_radius *= 0.5
 	TRAIL_INTERVAL /= 2
+	queue_redraw()
 	
 func shrink_green():
+	var old_radius = player_radius
 	player_radius *= 0.5
-	queue_redraw()
 	player_colission.shape.radius *= 0.5
 	TRAIL_INTERVAL *= 0.5
-	
-	await get_tree().create_timer(7.0).timeout
-	
-	player_radius *= 2
 	queue_redraw()
-	await get_tree().create_timer(0.5).timeout
-	player_colission.shape.radius *= 2
+
+	await get_tree().create_timer(7.0).timeout
+
+	player_radius = old_radius
+	set_player_radius(player_radius, Vector2.ZERO)
 	TRAIL_INTERVAL *= 2
 	
 func fly_green():

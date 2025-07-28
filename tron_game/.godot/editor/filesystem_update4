@@ -1,7 +1,10 @@
-res://scenes/main_menu/main_menu.tscn
-res://scenes/lobby/lobby.gd
-res://objects/player/Player.tscn
 res://scenes/game/game.tscn
+res://scenes/lobby/lobby.gd
+res://scenes/game/game.gd
+res://autoloads/gameState.gd
+res://UI/Components/select_player/select_player.gd
+res://scenes/main_menu/main_menu.tscn
+res://objects/player/Player.tscn
 res://objects/powers/bluePowers/clear_map_power.tscn
 res://scenes/lobby/lobby.tscn
 res://UI/Components/Button/custom_button.tscn
@@ -13,4 +16,4 @@ res://objects/powers/greenPowers/move_90_green_power.tscn
 res://objects/powers/greenPowers/shrink_green_power.tscn
 res://objects/powers/greenPowers/slow_down_green_power.tscn
 res://objects/powers/greenPowers/speed_up_green_power.tscn
-res://scenes/game/game.gd
+res://objects/player/player.gd
